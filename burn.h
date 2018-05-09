@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -98,7 +99,7 @@ void inicia_disciplinas(vector< vector < int > >& d_curso, int x){
 }
 
 //função que preenche o vetor de carga horária referente a cada disciplina
-void inicia_carga_horaria(int curso_ch[24][2]){
+void inicia_carga_horaria(int d_ch[24][2]){
   string line;
   int num = 0;
   int x = 0;
@@ -119,9 +120,9 @@ void inicia_carga_horaria(int curso_ch[24][2]){
     }
     for(int i = 0; i < 24; i++) {
       for(int j = 0; j < 2; j++) {
-        if(j == 0) {curso_ch[i][j] = (i+1);}
+        if(j == 0) {d_ch[i][j] = (i+1);}
         else {
-           curso_ch[i][j] = v_aux[i];
+           d_ch[i][j] = v_aux[i];
         }
       }
     }
@@ -130,9 +131,33 @@ void inicia_carga_horaria(int curso_ch[24][2]){
   in_file.close();
   for(int i = 0; i < 24; i++) {
     for(int j = 0; j < 2; j++) {
-      cout << curso_ch[i][j] << " ";
+      cout << d_ch[i][j] << " ";
     }
     cout << endl;
   }
   cout << endl << "Carga horária preenchida." << endl;
+}
+
+void random_fill(int d_ch[24][2], vector<int>& random_schedule) {
+  int x = 0;
+  vector<int> v_aux;
+
+  for(int i = 0; i < 24; i++) {
+    for(int j = 0; j < 2; j++) {
+      if(j == 0) {x = d_ch[i][j]; random_schedule.push_back(x);}
+    }
+  }
+
+  cout << "Vetor inicial" << endl;
+  for(int i = 0; i < random_schedule.size(); i++) {
+    cout << random_schedule[i] << endl;
+  }
+  cout << endl;
+
+  random_shuffle(random_schedule.begin(), random_schedule.end());
+
+  cout << "Shuffle vector" << endl;
+  for(int i = 0; i < random_schedule.size(); i++) {
+    cout << random_schedule[i] << endl;
+  }
 }
