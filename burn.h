@@ -73,17 +73,18 @@ void inicia_carga_horaria(vector<int>& d_ch){
   cout << endl << "Carga horária preenchida." << endl << endl;;
 }
 
+//reorganiza o vetor de horário, levando em consideração a carga horária da disciplina
 void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
   vector<int> d_80;
   int disc, aux, y = 0;
 
   for(int i = 0; i < d.size(); i++) {
     disc = d[i];
-    if(d_ch[disc-1] == 80) {
+    if(d_ch[disc-1] == 80) {                                        //verifica no vetor de carga horária usando o ID
       if((i+1) == d.size()) {h.push_back(disc); h.push_back(disc);}
       else {d_80.push_back(disc); h.push_back(disc);}
     }
-    else if(d_ch[disc-1] == 40) {
+    else if(d_ch[disc-1] == 40) {                                   //verifica no vetor de carga horária usando o ID
       h.push_back(disc);
       if((i+1) == d.size()) {
         for(int i = y; i < d_80.size(); i++) {aux = d_80[i]; h.push_back(aux);}
