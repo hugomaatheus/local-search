@@ -5,10 +5,9 @@
 using namespace std;
 
 int main () {
-  vector<int> d_t1, d_t2, d_t3, d_t4;         
+  vector<int> d_t1, d_t2, d_t3, d_t4;
   vector<int> d_ch;
   vector<int> h_t1, h_t2, h_t3, h_t4;
-  int x = 0;
 
   inicia_disciplinas(d_t1, 0);
   inicia_disciplinas(d_t2, 1);

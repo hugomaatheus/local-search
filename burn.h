@@ -6,6 +6,9 @@
 
 using namespace std;
 
+//
+
+
 //função utilizada para gerar a solução inicial aleatória
 void random_fill(vector<int>& random_schedule) {
   random_shuffle(random_schedule.begin(), random_schedule.end());
@@ -81,21 +84,27 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
   for(int i = 0; i < d.size(); i++) {
     disc = d[i];
     if(d_ch[disc-1] == 80) {                                        //verifica no vetor de carga horária usando o ID
-      if((i+1) == d.size()) {h.push_back(disc); h.push_back(disc);}
+      if((i+1) == d.size()) {
+        h.push_back(disc); h.push_back(disc);
+        if(!(d_80.empty())) {
+          for(int i = 0; i < d_80.size(); i++) {aux = d_80[i]; h.push_back(aux);}
+          d_80.clear();
+        }
+      }
       else {d_80.push_back(disc); h.push_back(disc);}
     }
     else if(d_ch[disc-1] == 40) {                                   //verifica no vetor de carga horária usando o ID
       h.push_back(disc);
-      if((i+1) == d.size()) {
-        for(int i = y; i < d_80.size(); i++) {aux = d_80[i]; h.push_back(aux);}
-      }
-      else if(((y+1) <= d_80.size()) && !(d_80.empty())) {
-        aux = d_80[y];
-        h.push_back(aux);
-        y++;
+      if(!(d_80.empty())) {
+        for(int i = 0; i < d_80.size(); i++) {aux = d_80[i]; h.push_back(aux);}
+        d_80.clear();
       }
     }
   }
-  for(int i = 0; i < h.size(); i++) {cout << h[i] << " ";}
+  for(int i = 0; i < h.size(); i++) {
+    cout << h[i] << " ";
+    if((i+1)%2 == 0) {cout << endl << "----" << endl;}
+    if((i+1) == h.size()) {cout << endl << endl;}
+  }
   cout << endl;
 }
