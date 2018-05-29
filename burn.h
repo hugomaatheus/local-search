@@ -6,8 +6,32 @@
 
 using namespace std;
 
+int my_binary_search(vector<int>& solution, int &d_out) {
+  int e = 0, m, s;
+  s = solution.size();
+  while(e <= s) {
+    m = (e+s)/2;
+    if(solution[m] == d_out) {return m;}
+    if(solution[m] < d_out) {e=m+1;}
+    else {s = m-1;}
+  }
+}
+
+void my_swatch(vector<int>& solution, int &d_out) {
+  int x = my_binary_search(solution, d_out);
+  int y = rand() % 6 + 0;
+  if(x == y) {y = rand() % 6 + 0;}
+  int aux = solution[y];
+  solution[x] = aux;
+  solution[y] = d_out;
+  cout << "X - " << x << endl;
+  cout << "Y - " << y << endl;
+  for(int i = 0; i < solution.size(); i++) {cout << solution[i] << " - ";}
+  cout << endl;
+}
+
 void outta_size(vector<int>& solution, int &d_out) {
-  if(solution.size() > 10) {d_out = solution.back();solution.pop_back();}
+  if(solution.size() > 10) {d_out = solution.back();}
 }
 
 //função de avaliação
@@ -65,7 +89,6 @@ void inicia_disciplinas(vector<int>& d, int x, int c){
     for(int i = 0; i < d.size(); i++) {
       cout << d[i] << " ";
     }
-    random_fill(d);
   }
 
   cout << endl << "disciplinas preenchidas" << endl;
@@ -98,13 +121,16 @@ void inicia_carga_horaria(vector<int>& d_ch){
 
 //reorganiza o vetor de horário, levando em consideração a carga horária da disciplina
 void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
-  vector<int> d_80;
-  int disc, aux, d_out;
+  vector<int> d_80, d_aux;
+  int disc, aux, d_out = 0;
 
-  for(int i = 0; i < d.size(); i++) {
-    disc = d[i];
+  d_aux.assign(d.begin(), d.end());
+  random_fill(d_aux);
+
+  for(int i = 0; i < d_aux.size(); i++) {
+    disc = d_aux[i];
     if(d_ch[disc-1] == 80) {                                        //verifica no vetor de carga horária usando o ID
-      if((i+1) == d.size()) {
+      if((i+1) == d_aux.size()) {
         h.push_back(disc); h.push_back(disc);
         if(!(d_80.empty())) {
           for(int i = 0; i < d_80.size(); i++) {aux = d_80[i]; h.push_back(aux);}
@@ -122,7 +148,10 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
     }
   }
   outta_size(h, d_out);
-  cout << d_out << endl;
+  cout << "D_OUT - " << d_out << endl;
+  if(d_out != 0) {my_swatch(d, d_out);}
+  d_out = 0;
+
 
   for(int i = 0; i < h.size(); i++) {
     cout << h[i] << " ";
