@@ -6,7 +6,11 @@
 
 using namespace std;
 
-//
+void outta_size(vector<int>& solution, int &d_out) {
+  if(solution.size() > 10) {d_out = solution.back();solution.pop_back();}
+}
+
+//função de avaliação
 
 
 //função utilizada para gerar a solução inicial aleatória
@@ -21,16 +25,32 @@ void random_fill(vector<int>& random_schedule) {
 }
 
 //função que gera solução inicial
-void inicia_disciplinas(vector<int>& d, int x){
+void inicia_disciplinas(vector<int>& d, int x, int c){
   int num = 0;
   string line, path;
 
   cout << endl << "Iniciando processo..." << endl;
 
-  if(x == 0) {path = "c1t1.txt";}
-  else if(x == 1) {path = "c1t2.txt";}
-  else if(x == 2) {path = "c1t3.txt";}
-  else {path = "c1t4.txt";}
+  if(c == 1) {
+    if(x == 0) {path = "c1t1.txt";}
+    else if(x == 1) {path = "c1t2.txt";}
+    else if(x == 2) {path = "c1t3.txt";}
+    else if(x == 3) {path = "c1t4.txt";}
+    else if(x == 4) {path = "c1t5.txt";}
+    else if(x == 5) {path = "c1t6.txt";}
+    else if(x == 6) {path = "c1t7.txt";}
+    else if(x == 7) {path = "c1t8.txt";}
+  }
+  else if(c == 2) {
+    if(x == 0) {path = "c2t1.txt";}
+    else if(x == 1) {path = "c2t2.txt";}
+    else if(x == 2) {path = "c2t3.txt";}
+    else if(x == 3) {path = "c2t4.txt";}
+    else if(x == 4) {path = "c2t5.txt";}
+    else if(x == 5) {path = "c2t6.txt";}
+    else if(x == 6) {path = "c2t7.txt";}
+    else if(x == 7) {path = "c2t8.txt";}
+  }
 
   ifstream d_file (path);
   if(!d_file.is_open())
@@ -41,7 +61,7 @@ void inicia_disciplinas(vector<int>& d, int x){
       d.push_back(num);
     }
     d_file.close();
-    cout << "Curso 1 - Turma "<< x+1 << endl;
+    cout << "Curso - Turma "<< x+1 << endl;
     for(int i = 0; i < d.size(); i++) {
       cout << d[i] << " ";
     }
@@ -79,7 +99,7 @@ void inicia_carga_horaria(vector<int>& d_ch){
 //reorganiza o vetor de horário, levando em consideração a carga horária da disciplina
 void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
   vector<int> d_80;
-  int disc, aux, y = 0;
+  int disc, aux, d_out;
 
   for(int i = 0; i < d.size(); i++) {
     disc = d[i];
@@ -101,6 +121,9 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
       }
     }
   }
+  outta_size(h, d_out);
+  cout << d_out << endl;
+
   for(int i = 0; i < h.size(); i++) {
     cout << h[i] << " ";
     if((i+1)%2 == 0) {cout << endl << "----" << endl;}
