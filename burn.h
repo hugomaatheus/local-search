@@ -6,55 +6,26 @@
 
 using namespace std;
 
-int my_binary_search(vector<int>& solution, int &d_out) {
-  int e = 0, m, s;
-  s = solution.size();
-  while(e <= s) {
-    m = (e+s)/2;
-    if(solution[m] == d_out) {return m;}
-    if(solution[m] < d_out) {e=m+1;}
-    else {s = m-1;}
-  }
+void outta_size(vector<int>& solution) {
+  if(solution.size() > 10) {solution.pop_back();}
 }
-
-void my_swatch(vector<int>& solution, int &d_out) {
-  int x = my_binary_search(solution, d_out);
-  int y = rand() % 6 + 0;
-  if(x == y) {y = rand() % 6 + 0;}
-  int aux = solution[y];
-  solution[x] = aux;
-  solution[y] = d_out;
-  cout << "X - " << x << endl;
-  cout << "Y - " << y << endl;
-  for(int i = 0; i < solution.size(); i++) {cout << solution[i] << " - ";}
-  cout << endl;
-}
-
-void outta_size(vector<int>& solution, int &d_out) {
-  if(solution.size() > 10) {d_out = solution.back();}
-}
-
-//função de avaliação
-
 
 //função utilizada para gerar a solução inicial aleatória
 void random_fill(vector<int>& random_schedule) {
   random_shuffle(random_schedule.begin(), random_schedule.end());
   cout << endl;
-
   cout << "Shuffle vector" << endl;
   for(int i = 0; i < random_schedule.size(); i++) {
     cout << random_schedule[i] << endl;
   }
+  cout << endl;
 }
 
 //função que gera solução inicial
 void inicia_disciplinas(vector<int>& d, int x, int c){
   int num = 0;
   string line, path;
-
   cout << endl << "Iniciando processo..." << endl;
-
   if(c == 1) {
     if(x == 0) {path = "c1t1.txt";}
     else if(x == 1) {path = "c1t2.txt";}
@@ -100,7 +71,6 @@ void inicia_carga_horaria(vector<int>& d_ch){
   int num = 0;
   vector<int> v_aux;
   ifstream in_file ("in.txt");
-
   cout << endl << "Iniciando processo..." << endl << endl;
 
   if(!in_file.is_open()) {
@@ -122,7 +92,7 @@ void inicia_carga_horaria(vector<int>& d_ch){
 //reorganiza o vetor de horário, levando em consideração a carga horária da disciplina
 void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
   vector<int> d_80, d_aux;
-  int disc, aux, d_out = 0;
+  int disc, aux;
 
   d_aux.assign(d.begin(), d.end());
   random_fill(d_aux);
@@ -147,11 +117,7 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
       }
     }
   }
-  outta_size(h, d_out);
-  cout << "D_OUT - " << d_out << endl;
-  if(d_out != 0) {my_swatch(d, d_out);}
-  d_out = 0;
-
+  outta_size(h);
 
   for(int i = 0; i < h.size(); i++) {
     cout << h[i] << " ";
@@ -159,4 +125,27 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
     if((i+1) == h.size()) {cout << endl << endl;}
   }
   cout << endl;
+}
+
+void avalia(vector<int>& c1, vector<int>& c2, vector<int>& h1, vector<int>& h2, int &score) {
+  vector<int> v_aux;
+  int x = 0; int num, z = 0;
+
+  score = 0;
+  for(int i = 0; i < c1.size(); i++) {
+    if(c1[x] == c2[i]) {v_aux.push_back(c1[x]); x++;}
+  }
+  if(!v_aux.empty()) {
+    while(z < v_aux.size()) {
+      num = v_aux[z];
+      for(int i = 0; i < h1.size(); i++) {
+        if(h1[i] == num) {
+          if(h2[i] != num) {score++;}
+        }
+      }
+      z++;
+    }
+  }
+
+  cout << "SCORE - " << score << endl;
 }
