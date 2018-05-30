@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -127,11 +129,49 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
   cout << endl;
 }
 
-void avalia(vector<int>& c1, vector<int>& c2, vector<int>& h1, vector<int>& h2, int &score) {
+void avalia(vector<int>& h1, vector<int>& h2, int &score, int &total_score) {
   score = 0;
-
   for(int i = 0; i < h1.size(); i++) {
-    if(h1[i] != h2[i]) {cout  << endl << h1[i] << " - " << h2[i] << endl; score++;}
+    if(h1[i] != h2[i]) {score++;}
   }
-  cout << endl << "SCORE - " << score << endl;
+  total_score += score;
+  //cout << endl << "SCORE - " << score << endl;
+}
+
+void save_best_h(vector<int> h1, vector<int> h2, vector<int>& b_h1, vector<int>& b_h2) {
+  int x, y;
+  for(int i = 0; i < h1.size(); i++) {
+    x = h1[i]; y = h2[i];
+    b_h1.push_back(x); b_h2.push_back(y);
+  }
+}
+
+void my_swap(vector<int>& h1, vector<int>& h2) {
+  srand(time(NULL));
+
+  int x = (h1.size()-1);
+  int r = rand() % x + 0;
+  int y1, y2 = 0, aux = 0;
+
+  cout << "N-SWAP - " << r << endl;
+  for(int i = 0; i < r; i++) {    
+    y1 = rand() % x + 0; y2 = rand() % x + 0;
+    //cout << "1 - X-SWAP - " << y1 << endl;
+    //cout << "1 - Y-SWAP - " << y2 << endl;
+    aux = h1[y1]; h1[y1] = h1[y2]; h1[y2] = aux;
+    y1 = rand() % x + 0; y2 = rand() % x + 0;
+    //cout << "2 - X-SWAP - " << y1 << endl;
+    //cout << "2 - Y-SWAP - " << y2 << endl;
+    aux = h2[y1]; h2[y1] = h2[y2]; h2[y2] = aux;
+  }
+  for(int i = 0; i < h1.size(); i++) {
+    cout << h1[i] << " ";
+    if((i+1)%2 == 0) {cout << endl << "----" << endl;}
+    if((i+1) == h1.size()) {cout << endl << endl;}
+  }
+  for(int i = 0; i < h2.size(); i++) {
+    cout << h2[i] << " ";
+    if((i+1)%2 == 0) {cout << endl << "----" << endl;}
+    if((i+1) == h2.size()) {cout << endl << endl;}
+  }
 }
