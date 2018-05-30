@@ -54,9 +54,9 @@ int main () {
   avalia(c1_t2, c2_t2, h1_t2, h2_t2, score_2);
   avalia(c1_t3, c2_t3, h1_t3, h2_t3, score_3);
   avalia(c1_t4, c2_t4, h1_t4, h2_t4, score_4);
-  avalia(c1_t5, c2_t5, h1_t5, h2_t5, score_5);
+  //avalia(c1_t5, c2_t5, h1_t5, h2_t5, score_5); não compartilham disciplinas em comum
   avalia(c1_t6, c2_t6, h1_t6, h2_t6, score_6);
-  avalia(c1_t7, c2_t7, h1_t7, h2_t7, score_7);
+  //avalia(c1_t7, c2_t7, h1_t7, h2_t7, score_7); não compartilham disciplinas em comum
   avalia(c1_t8, c2_t8, h1_t8, h2_t8, score_8);
 
   return 0;

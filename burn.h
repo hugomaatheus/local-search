@@ -128,24 +128,10 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
 }
 
 void avalia(vector<int>& c1, vector<int>& c2, vector<int>& h1, vector<int>& h2, int &score) {
-  vector<int> v_aux;
-  int x = 0; int num, z = 0;
-
   score = 0;
-  for(int i = 0; i < c1.size(); i++) {
-    if(c1[x] == c2[i]) {v_aux.push_back(c1[x]); x++;}
-  }
-  if(!v_aux.empty()) {
-    while(z < v_aux.size()) {
-      num = v_aux[z];
-      for(int i = 0; i < h1.size(); i++) {
-        if(h1[i] == num) {
-          if(h2[i] != num) {score++;}
-        }
-      }
-      z++;
-    }
-  }
 
-  cout << "SCORE - " << score << endl;
+  for(int i = 0; i < h1.size(); i++) {
+    if(h1[i] != h2[i]) {cout  << endl << h1[i] << " - " << h2[i] << endl; score++;}
+  }
+  cout << endl << "SCORE - " << score << endl;
 }
