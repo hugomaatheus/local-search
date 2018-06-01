@@ -16,10 +16,10 @@ void outta_size(vector<int>& solution) {
 void random_fill(vector<int>& random_schedule) {
   random_shuffle(random_schedule.begin(), random_schedule.end());
   cout << endl;
-  cout << "Shuffle vector" << endl;
-  for(int i = 0; i < random_schedule.size(); i++) {
+  //cout << "Shuffle vector" << endl;
+  /*for(int i = 0; i < random_schedule.size(); i++) {
     cout << random_schedule[i] << endl;
-  }
+  }*/
   cout << endl;
 }
 
@@ -59,9 +59,9 @@ void inicia_disciplinas(vector<int>& d, int x, int c){
     }
     d_file.close();
     cout << "Curso - Turma "<< x+1 << endl;
-    for(int i = 0; i < d.size(); i++) {
+    /*for(int i = 0; i < d.size(); i++) {
       cout << d[i] << " ";
-    }
+    }*/
   }
 
   cout << endl << "disciplinas preenchidas" << endl;
@@ -85,14 +85,14 @@ void inicia_carga_horaria(vector<int>& d_ch){
     }
   }
   in_file.close();
-  for(int i = 0; i < d_ch.size(); i++) {
+  /*for(int i = 0; i < d_ch.size(); i++) {
     cout << d_ch[i] << endl;;
-  }
+  } */
   cout << endl << "Carga horária preenchida." << endl << endl;;
 }
 
 //reorganiza o vetor de horário, levando em consideração a carga horária da disciplina
-void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
+void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h, int &normal_score) {
   vector<int> d_80, d_aux;
   int disc, aux;
 
@@ -102,6 +102,7 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
   for(int i = 0; i < d_aux.size(); i++) {
     disc = d_aux[i];
     if(d_ch[disc-1] == 80) {                                        //verifica no vetor de carga horária usando o ID
+      normal_score+=80;
       if((i+1) == d_aux.size()) {
         h.push_back(disc); h.push_back(disc);
         if(!(d_80.empty())) {
@@ -112,6 +113,7 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
       else {d_80.push_back(disc); h.push_back(disc);}
     }
     else if(d_ch[disc-1] == 40) {                                   //verifica no vetor de carga horária usando o ID
+      normal_score+=40;
       h.push_back(disc);
       if(!(d_80.empty())) {
         for(int i = 0; i < d_80.size(); i++) {aux = d_80[i]; h.push_back(aux);}
@@ -121,18 +123,37 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h) {
   }
   outta_size(h);
 
-  for(int i = 0; i < h.size(); i++) {
+  /* for(int i = 0; i < h.size(); i++) {
     cout << h[i] << " ";
     if((i+1)%2 == 0) {cout << endl << "----" << endl;}
     if((i+1) == h.size()) {cout << endl << endl;}
   }
   cout << endl;
+  */
 }
 
-void avalia(vector<int>& h1, vector<int>& h2, int &score, int &total_score) {
+void compara(vector<int> h1, vector<int> h2, int ch, int disc, int &score) {
+  //int x1 = 0, x2 = 0;
+  for(int i = 0; i < h2.size(); i++) {
+    if(ch == 80) {
+      if(disc == h2[i]) {
+        if(h1[i] != h2[i]) {score += 80;}
+      }
+    }
+    else {
+      if(disc == h2[i]) {
+        if(h1[i] != h2[i]) {score += 40;}
+      }
+    }
+  }
+}
+
+void avalia(vector<int> h1, vector<int> h2, vector<int> d, vector<int> v_ch, int &score, int &total_score) {
   score = 0;
-  for(int i = 0; i < h1.size(); i++) {
-    if(h1[i] != h2[i]) {score++;}
+  int disc = 0, ch = 0;
+  for(int i = 0; i < d.size(); i++) {
+    disc = d[i]; ch = v_ch[disc-1];
+    compara(h1, h2, ch, disc, score);
   }
   total_score += score;
   //cout << endl << "SCORE - " << score << endl;
@@ -140,6 +161,7 @@ void avalia(vector<int>& h1, vector<int>& h2, int &score, int &total_score) {
 
 void save_best_h(vector<int> h1, vector<int> h2, vector<int>& b_h1, vector<int>& b_h2) {
   int x, y;
+  b_h1.clear(); b_h2.clear();
   for(int i = 0; i < h1.size(); i++) {
     x = h1[i]; y = h2[i];
     b_h1.push_back(x); b_h2.push_back(y);
@@ -150,20 +172,21 @@ void my_swap(vector<int>& h1, vector<int>& h2) {
   srand(time(NULL));
 
   int x = (h1.size()-1);
-  int r = rand() % x + 0;
+  int r = rand() % x;
   int y1, y2 = 0, aux = 0;
 
-  cout << "N-SWAP - " << r << endl;
-  for(int i = 0; i < r; i++) {    
-    y1 = rand() % x + 0; y2 = rand() % x + 0;
+  //cout << "N-SWAP - " << r << endl;
+  for(int i = 0; i < r; i++) {
+    y1 = rand() % x; y2 = rand() % x + 0;
     //cout << "1 - X-SWAP - " << y1 << endl;
     //cout << "1 - Y-SWAP - " << y2 << endl;
     aux = h1[y1]; h1[y1] = h1[y2]; h1[y2] = aux;
-    y1 = rand() % x + 0; y2 = rand() % x + 0;
+    y1 = rand() % x; y2 = rand() % x + 0;
     //cout << "2 - X-SWAP - " << y1 << endl;
     //cout << "2 - Y-SWAP - " << y2 << endl;
     aux = h2[y1]; h2[y1] = h2[y2]; h2[y2] = aux;
   }
+  /*
   for(int i = 0; i < h1.size(); i++) {
     cout << h1[i] << " ";
     if((i+1)%2 == 0) {cout << endl << "----" << endl;}
@@ -173,5 +196,5 @@ void my_swap(vector<int>& h1, vector<int>& h2) {
     cout << h2[i] << " ";
     if((i+1)%2 == 0) {cout << endl << "----" << endl;}
     if((i+1) == h2.size()) {cout << endl << endl;}
-  }
+  } */
 }
