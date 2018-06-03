@@ -125,7 +125,7 @@ int main () {
       }
       else {last_score = total_score;}
     }
-    if(i == 9999) {
+  /*  if(i == 9999) {
       show_h(h1_t1, h1_t2);
       show_h(h1_t3, h1_t4);
       show_h(h1_t5, h1_t6);
@@ -140,11 +140,12 @@ int main () {
       cout << "---INICIO---" << endl;
       cout << "LAST SCORE - " << last_score << endl;
       cout << "BEST SCORE - " << best_score << endl;
-    }
+    } */
 
     total_score = 0;
   }
 
+  cout << "---BEST SOLUTION---" << endl;
   show_h(b_h1_t1, b_h1_t2);
   show_h(b_h1_t3, b_h1_t4);
   show_h(b_h1_t5, b_h1_t6);

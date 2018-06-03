@@ -145,7 +145,7 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h, int &normal_sc
   */
 }
 
-void compara(vector<int> h1, vector<int> h2, int ch, int disc, int &score) {  
+void compara(vector<int> h1, vector<int> h2, int ch, int disc, int &score) {
   for(int i = 0; i < h2.size(); i++) {
     if(ch == 80) {
       if(disc == h2[i]) {
@@ -189,11 +189,11 @@ void my_swap(vector<int>& h1, vector<int>& h2) {
 
   //cout << "N-SWAP - " << r << endl;
   for(int i = 0; i < r; i++) {
-    y1 = rand() % x; y2 = rand() % x + 0;
+    y1 = rand() % x; y2 = rand() % x;
     //cout << "1 - X-SWAP - " << y1 << endl;
     //cout << "1 - Y-SWAP - " << y2 << endl;
     aux = h1[y1]; h1[y1] = h1[y2]; h1[y2] = aux;
-    y1 = rand() % x; y2 = rand() % x + 0;
+    y1 = rand() % x; y2 = rand() % x;
     //cout << "2 - X-SWAP - " << y1 << endl;
     //cout << "2 - Y-SWAP - " << y2 << endl;
     aux = h2[y1]; h2[y1] = h2[y2]; h2[y2] = aux;
