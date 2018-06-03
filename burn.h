@@ -12,6 +12,19 @@ void outta_size(vector<int>& solution) {
   if(solution.size() > 10) {solution.pop_back();}
 }
 
+void show_h(vector<int> h1, vector<int> h2) {
+  for(int j = 0; j < h1.size(); j++) {
+    cout << h1[j] << " ";
+    if((j+1)%2 == 0) {cout << endl << "----" << endl;}
+    if((j+1) == h1.size()) {cout << endl << endl;}
+  }
+  for(int j = 0; j < h2.size(); j++) {
+    cout << h2[j] << " ";
+    if((j+1)%2 == 0) {cout << endl << "----" << endl;}
+    if((j+1) == h2.size()) {cout << endl << endl;}
+  }
+}
+
 //função utilizada para gerar a solução inicial aleatória
 void random_fill(vector<int>& random_schedule) {
   random_shuffle(random_schedule.begin(), random_schedule.end());
@@ -132,8 +145,7 @@ void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h, int &normal_sc
   */
 }
 
-void compara(vector<int> h1, vector<int> h2, int ch, int disc, int &score) {
-  //int x1 = 0, x2 = 0;
+void compara(vector<int> h1, vector<int> h2, int ch, int disc, int &score) {  
   for(int i = 0; i < h2.size(); i++) {
     if(ch == 80) {
       if(disc == h2[i]) {

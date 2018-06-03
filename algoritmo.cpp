@@ -109,12 +109,12 @@ int main () {
 
     avalia(h1_t8, h2_t8, c1_t8, d_ch, score, total_score);
 
-    if(i == 0) {last_score = total_score;}
+    if(i == 0) {last_score = total_score; best_score = total_score;}
     else {
-      if(last_score > total_score) {
+      if(best_score > total_score) {
         last_score = total_score;
         best_score = total_score;
-        save_best_h(h1_t1, h2_t1, b_h1_t1, b_h2_t2);
+        save_best_h(h1_t1, h2_t1, b_h1_t1, b_h2_t1);
         save_best_h(h1_t2, h2_t2, b_h1_t2, b_h2_t2);
         save_best_h(h1_t3, h2_t3, b_h1_t3, b_h2_t3);
         save_best_h(h1_t4, h2_t4, b_h1_t4, b_h2_t4);
@@ -125,30 +125,37 @@ int main () {
       }
       else {last_score = total_score;}
     }
-    /*if(i < 3) {
-      for(int j = 0; j < h1_t1.size(); j++) {
-        cout << h1_t1[j] << " ";
-        if((j+1)%2 == 0) {cout << endl << "----" << endl;}
-        if((j+1) == h1_t1.size()) {cout << endl << endl;}
-      }
-      for(int j = 0; j < h2_t1.size(); j++) {
-        cout << h2_t1[j] << " ";
-        if((j+1)%2 == 0) {cout << endl << "----" << endl;}
-        if((j+1) == h2_t1.size()) {cout << endl << endl;}
-      }
-    } */
+    if(i == 9999) {
+      show_h(h1_t1, h1_t2);
+      show_h(h1_t3, h1_t4);
+      show_h(h1_t5, h1_t6);
+      show_h(h1_t7, h1_t8);
+
+      show_h(h2_t1, h2_t2);
+      show_h(h2_t3, h2_t4);
+      show_h(h2_t5, h2_t6);
+      show_h(h2_t7, h2_t8);
+
+      cout << endl;
+      cout << "---INICIO---" << endl;
+      cout << "LAST SCORE - " << last_score << endl;
+      cout << "BEST SCORE - " << best_score << endl;
+    }
 
     total_score = 0;
   }
-  /*cout << "Total Score - " << total_score << endl;
-  cout << "Last Score - " << last_score << endl;
-  cout << "Best Score - " << best_score << endl;
 
-  for(int j = 0; j < b_h1_t1.size(); j++) {
-    cout << b_h1_t1[j] << " ";
-    if((j+1)%2 == 0) {cout << endl << "----" << endl;}
-    if((j+1) == b_h1_t1.size()) {cout << endl << endl;}
-  } */
+  show_h(b_h1_t1, b_h1_t2);
+  show_h(b_h1_t3, b_h1_t4);
+  show_h(b_h1_t5, b_h1_t6);
+  show_h(b_h1_t7, b_h1_t8);
+  cout << endl;
+  show_h(b_h2_t1, b_h2_t2);
+  show_h(b_h2_t3, b_h2_t4);
+  show_h(b_h2_t5, b_h2_t6);
+  show_h(b_h2_t7, b_h2_t8);
+
+  cout << "---FINAL---" << endl;
   cout << "NORMAL SCORE - " << normal_score << endl;
   cout << "LAST SCORE - " << last_score << endl;
   cout << "BEST SCORE - " << best_score << endl;
