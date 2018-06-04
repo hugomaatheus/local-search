@@ -105,7 +105,7 @@ void inicia_carga_horaria(vector<int>& d_ch){
 }
 
 //reorganiza o vetor de horário, levando em consideração a carga horária da disciplina
-void some_name(vector<int>& d, vector<int>& d_ch, vector<int>& h, int &normal_score) {
+void initial_p(vector<int>& d, vector<int>& d_ch, vector<int>& h, int &normal_score) {
   vector<int> d_80, d_aux;
   int disc, aux;
 

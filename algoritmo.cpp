@@ -37,23 +37,23 @@ int main () {
 
   inicia_carga_horaria(d_ch);
 
-  some_name(c1_t1, d_ch, h1_t1, normal_score);
-  some_name(c1_t2, d_ch, h1_t2, normal_score);
-  some_name(c1_t3, d_ch, h1_t3, normal_score);
-  some_name(c1_t4, d_ch, h1_t4, normal_score);
-  some_name(c1_t5, d_ch, h1_t5, normal_score);
-  some_name(c1_t6, d_ch, h1_t6, normal_score);
-  some_name(c1_t7, d_ch, h1_t7, normal_score);
-  some_name(c1_t8, d_ch, h1_t8, normal_score);
+  initial_p(c1_t1, d_ch, h1_t1, normal_score);
+  initial_p(c1_t2, d_ch, h1_t2, normal_score);
+  initial_p(c1_t3, d_ch, h1_t3, normal_score);
+  initial_p(c1_t4, d_ch, h1_t4, normal_score);
+  initial_p(c1_t5, d_ch, h1_t5, normal_score);
+  initial_p(c1_t6, d_ch, h1_t6, normal_score);
+  initial_p(c1_t7, d_ch, h1_t7, normal_score);
+  initial_p(c1_t8, d_ch, h1_t8, normal_score);
 
-  some_name(c2_t1, d_ch, h2_t1, normal_score);
-  some_name(c2_t2, d_ch, h2_t2, normal_score);
-  some_name(c2_t3, d_ch, h2_t3, normal_score);
-  some_name(c2_t4, d_ch, h2_t4, normal_score);
-  some_name(c2_t5, d_ch, h2_t5, normal_score);
-  some_name(c2_t6, d_ch, h2_t6, normal_score);
-  some_name(c2_t7, d_ch, h2_t7, normal_score);
-  some_name(c2_t8, d_ch, h2_t8, normal_score);
+  initial_p(c2_t1, d_ch, h2_t1, normal_score);
+  initial_p(c2_t2, d_ch, h2_t2, normal_score);
+  initial_p(c2_t3, d_ch, h2_t3, normal_score);
+  initial_p(c2_t4, d_ch, h2_t4, normal_score);
+  initial_p(c2_t5, d_ch, h2_t5, normal_score);
+  initial_p(c2_t6, d_ch, h2_t6, normal_score);
+  initial_p(c2_t7, d_ch, h2_t7, normal_score);
+  initial_p(c2_t8, d_ch, h2_t8, normal_score);
 
   for(int i = 0; i < 10000; i++) {
     my_swap(h1_t1, h2_t1);
